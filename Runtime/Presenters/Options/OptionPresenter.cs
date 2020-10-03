@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Mutiny.Thesis.UI
+namespace Chinchillada.Thesis.UI
 {
     /// <summary>
     /// Generic implementation of <see cref="IMultipleChoicePresenter{T}"/> that hides the type implementation behind

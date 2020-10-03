@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Mutiny.Foundation.UI
+namespace Chinchillada.Foundation.UI
 {
     public class ToggleEvents : ChinchilladaBehaviour
     {

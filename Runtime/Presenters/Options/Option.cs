@@ -1,4 +1,4 @@
-﻿using Mutiny.Thesis.UI;
+﻿using Chinchillada.Thesis.UI;
 
 namespace Chinchillada.Foundation.UI
 {

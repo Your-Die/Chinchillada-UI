@@ -1,4 +1,4 @@
-namespace Mutiny.Thesis.UI
+namespace Chinchillada.Thesis.UI
 {
     using UnityEngine.EventSystems;
 
