@@ -1,5 +1,8 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Chinchillada.Foundation.UI
 {
@@ -8,16 +11,40 @@ namespace Chinchillada.Foundation.UI
         [SerializeField, FindComponent(SearchStrategy.InChildren)]
         private TMP_Text textElement;
 
-        [SerializeField] private string style;
+        [SerializeField] private List<ITextDecorator> decorators = new List<ITextDecorator>();
 
-        public void Present(string content)
+        private string content;
+        private string rawContent;
+
+        public void Present(string newContent)
         {
-            if (!string.IsNullOrWhiteSpace(this.style)) 
-                content = content.WrapStyle(this.style);
-
-            this.textElement.text = content;
+            this.rawContent = newContent;
+            this.BuildText();
         }
 
         public void Hide() => this.textElement.text = string.Empty;
+
+        public void AddDecorator(ITextDecorator decorator)
+        {
+            this.decorators.Add(decorator);
+            this.BuildText();
+        }
+
+        public void RemoveDecorator(ITextDecorator decorator)
+        {
+            this.decorators.Remove(decorator);
+            this.BuildText();
+        }
+
+        private void BuildText()
+        {
+            this.content =  this.decorators != null && this.decorators.Any()
+                ? this.decorators.Aggregate(this.rawContent, ExecuteDecorator)
+                : this.rawContent;
+
+            this.textElement.text = this.content;
+
+            string ExecuteDecorator(string text, ITextDecorator decorator) => decorator.Decorate(text);
+        }
     }
 }
