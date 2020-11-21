@@ -22,40 +22,40 @@ namespace Chinchillada.Foundation.UI
 
         private T currentContent;
         
-        public Tribune<T> Tribune { get; private set; }
+        public UtilitySystem<T> UtilitySystem { get; private set; }
 
         public void Summon(object summoner, int priority, T content)
         {
-            this.Tribune.JoinAudience(summoner, priority, content);
+            this.UtilitySystem.AddOption(summoner, content, priority);
         }
 
         public void Unsummon(object summoner)
         {
-            this.Tribune.LeaveAudience(summoner);
+            this.UtilitySystem.RemoveOption(summoner);
         }
 
         [UsedImplicitly]
-        public void ForceHide() => this.Tribune.Clear();
+        public void ForceHide() => this.UtilitySystem.Clear();
 
         public override void Freeze()
         {
             if (this.IsSummoned == false)
                 return;
 
-            this.Tribune.JoinAudience(this, this.freezePriority, this.currentContent);
+            this.UtilitySystem.AddOption(this, this.currentContent, this.freezePriority);
             base.Freeze();
         }
 
         public override void Unfreeze()
         {
-            this.Tribune.LeaveAudience(this);
+            this.UtilitySystem.RemoveOption(this);
             base.Unfreeze();
         }
 
         protected override void Awake()
         {
             base.Awake();
-            this.Tribune = new Tribune<T>(this)
+            this.UtilitySystem = new UtilitySystem<T>(this)
             {
                 Logger = this.tribuneLogHandler
             };
@@ -74,14 +74,14 @@ namespace Chinchillada.Foundation.UI
             this.Hide();
         }
 
-        void IPerformer<T>.PerformRequest(T request)
+        void IUtilityExecutor<T>.ExecuteOption(T option)
         {
-            if (request == null)
+            if (option == null)
                 this.HideInternal();
             else
-                this.ShowInternal(request);
+                this.ShowInternal(option);
         }
 
-        void IPerformer<T>.StopPerformance() => this.HideInternal();
+        void IUtilityExecutor<T>.Stop() => this.HideInternal();
     }
 }
