@@ -11,7 +11,7 @@ namespace Chinchillada.Foundation.UI
         [SerializeField, FindComponent(SearchStrategy.InChildren)]
         private TMP_Text textElement;
 
-        [SerializeField] private List<ITextDecorator> decorators = new List<ITextDecorator>();
+        [SerializeField] private HashSet<ITextDecorator> decorators = new HashSet<ITextDecorator>();
 
         private string content;
         private string rawContent;
