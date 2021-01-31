@@ -10,5 +10,7 @@ namespace Chinchillada.Foundation.UI
     public interface IMultipleChoicePresenter<T> : IPresenter<IEnumerable<T>>
     {
         event Action<T> SelectedEvent;
+
+        void SelectOption(int index);
     }
 }

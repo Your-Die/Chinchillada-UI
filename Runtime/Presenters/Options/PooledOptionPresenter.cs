@@ -13,7 +13,7 @@ namespace Chinchillada.Thesis.UI
     /// Generic implementation of <see cref="IMultipleChoicePresenter{T}"/> that hides the type implementation behind
     /// a <see cref="IOption"/> interface.
     /// </summary>
-    public class OptionPresenter : ChinchilladaBehaviour, IMultipleChoicePresenter<IOption>
+    public class PooledOptionPresenter : ChinchilladaBehaviour, IMultipleChoicePresenter<IOption>
     {
         /// <summary>
         /// The buttons used to present the <see cref="IOption"/>.
@@ -39,6 +39,12 @@ namespace Chinchillada.Thesis.UI
         /// Event invoked when an <see cref="IOption"/> has been selected.
         /// </summary>
         public event Action<IOption> SelectedEvent;
+
+        public void SelectOption(int index)
+        {
+            var button = this.buttons[index];
+            this.listenerLookup[button].OnButtonClicked();
+        }
 
         /// <inheritdoc />
         public IEnumerable<IOption> Content { get; private set; }
@@ -145,7 +151,7 @@ namespace Chinchillada.Thesis.UI
 
             public void Deactivate() => this.button.Button.onClick.RemoveListener(this.OnButtonClicked);
 
-            private void OnButtonClicked() => this.callback.Invoke(this.button);
+            public void OnButtonClicked() => this.callback.Invoke(this.button);
         }
     }
 }

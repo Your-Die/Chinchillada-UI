@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 namespace Chinchillada.Foundation.UI
 {
+    using System;
+
     /// <summary>
     /// Utility interface for accessing both the <see cref="Button"/> and associated <see cref="TMP_Text"/>
     /// on a button object.
@@ -33,5 +35,12 @@ namespace Chinchillada.Foundation.UI
         /// The text.
         /// </summary>
         public TMP_Text TextElement => this.textElement;
+
+        public event Action<ButtonController> Clicked;
+
+        private void OnEnable() => this.button.onClick.AddListener(this.OnClicked);
+        private void OnDisable() => this.button.onClick.RemoveListener(this.OnClicked);
+
+        public void OnClicked() => this.Clicked?.Invoke(this);
     }
 }
