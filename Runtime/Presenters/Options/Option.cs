@@ -43,5 +43,7 @@ namespace Chinchillada.Foundation.UI
             var asBase = (Option<T>) option;
             return asBase.Content;
         }
+
+        public override string ToString() => this.Content.ToString();
     }
 }
