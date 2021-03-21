@@ -13,7 +13,7 @@ namespace Chinchillada.UI
             EventSystem.current.SetSelectedGameObject(this.target);
         }
 
-        protected override void FindComponents()
+        public override void FindComponents()
         {
             base.FindComponents();
             
