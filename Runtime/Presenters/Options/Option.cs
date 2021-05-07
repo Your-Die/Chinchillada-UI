@@ -1,6 +1,6 @@
 ﻿using Chinchillada.Thesis.UI;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     /// <summary>
     /// Generic class for <see cref="IOption"/> being presented in a <see cref="PooledOptionPresenter"/>.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     /// <summary>
     /// <see cref="IPresenter{T}"/> that presents multiple options of a given type,

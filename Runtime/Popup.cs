@@ -1,6 +1,6 @@
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
-    using Foundation;
+    using Chinchillada;
     using UnityEngine;
 
     public class Popup : ChinchilladaBehaviour

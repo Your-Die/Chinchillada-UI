@@ -1,4 +1,4 @@
-﻿namespace Chinchillada.Foundation.UI
+﻿namespace Chinchillada.UI
 {
     using System;
     using System.Collections.Generic;

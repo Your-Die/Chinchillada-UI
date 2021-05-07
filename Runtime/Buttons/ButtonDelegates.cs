@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     /// <summary>
     /// Collects all child buttons so the <see cref="Button.onClick"/> events can be edited in one place.

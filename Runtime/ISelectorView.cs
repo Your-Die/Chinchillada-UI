@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     public interface ISelectorView<out T>
     {

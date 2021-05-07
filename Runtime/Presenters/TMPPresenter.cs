@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     public class TMPPresenter : ChinchilladaBehaviour, IPresenter<string>
     {
