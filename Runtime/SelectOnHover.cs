@@ -1,4 +1,4 @@
-﻿using Chinchillada.Foundation;
+﻿using Chinchillada;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
-    public abstract class FreezableTribune<T> : ChinchilladaBehaviour, IUtilityExecutor<T>, IFreezableTribune
+    public abstract class FreezableTribune<T> : ChinchilladaBehaviour, IPriorityExecutor<T>, IFreezableTribune
     {
         [SerializeField] private int freezePriority = 2;
 
@@ -12,38 +12,38 @@ namespace Chinchillada.Foundation.UI
 
         public bool IsSummoned { get; private set; }
 
-        public UtilitySystem<T> UtilitySystem { get; private set; }
+        public PrioritySystem<T> PrioritySystem { get; private set; }
 
         public void Summon(object summoner, int priority, T content)
         {
-            this.UtilitySystem.AddOption(summoner, content, priority);
+            this.PrioritySystem.AddOption(summoner, content, priority);
         }
 
         public void Unsummon(object summoner)
         {
-            this.UtilitySystem.RemoveOption(summoner);
+            this.PrioritySystem.RemoveOption(summoner);
         }
 
-        public virtual void ForceHide() => this.UtilitySystem.Clear();
+        public virtual void ForceHide() => this.PrioritySystem.Clear();
 
         public virtual void Freeze()
         {
             if (this.IsSummoned == false)
                 return;
 
-            this.UtilitySystem.AddOption(this, this.currentContent, this.freezePriority);
+            this.PrioritySystem.AddOption(this, this.currentContent, this.freezePriority);
         }
 
 
         public virtual void Unfreeze()
         {
-            this.UtilitySystem.RemoveOption(this);
+            this.PrioritySystem.RemoveOption(this);
         }
 
         protected override void Awake()
         {
             base.Awake();
-            this.UtilitySystem = new UtilitySystem<T>(this)
+            this.PrioritySystem = new PrioritySystem<T>(this)
             {
                 Logger = this.tribuneLogHandler
             };
@@ -69,7 +69,7 @@ namespace Chinchillada.Foundation.UI
             this.Hide();
         }
         
-        void IUtilityExecutor<T>.ExecuteOption(T option)
+        void IPriorityExecutor<T>.ExecuteOption(T option)
         {
             if (option == null)
                 this.HideInternal();
@@ -77,6 +77,6 @@ namespace Chinchillada.Foundation.UI
                 this.ShowInternal(option);
         }
 
-        void IUtilityExecutor<T>.Stop() => this.Hide();
+        void IPriorityExecutor<T>.Stop() => this.Hide();
     }
 }

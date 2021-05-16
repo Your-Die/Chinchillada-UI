@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     /// <summary>
     /// <see cref="IPresenter{T}"/> that presents one option out of multiple,

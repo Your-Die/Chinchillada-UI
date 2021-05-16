@@ -1,8 +1,8 @@
 ﻿namespace Presenters.Options
 {
     using System.Collections.Generic;
-    using Chinchillada.Foundation;
-    using Chinchillada.Foundation.UI;
+    using Chinchillada;
+    using Chinchillada.UI;
     using UnityEngine;
 
     public class KeyBasedOptionSelector :  ChinchilladaBehaviour

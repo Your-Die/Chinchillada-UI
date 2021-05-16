@@ -1,4 +1,4 @@
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     using Sirenix.Serialization;
 

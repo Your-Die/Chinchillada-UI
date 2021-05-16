@@ -1,5 +1,5 @@
-﻿using Chinchillada.Foundation;
-using Chinchillada.Foundation.UI;
+﻿using Chinchillada;
+using Chinchillada.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;

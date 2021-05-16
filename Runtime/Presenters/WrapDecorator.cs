@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     [Serializable]
     public class WrapDecorator : ITextDecorator

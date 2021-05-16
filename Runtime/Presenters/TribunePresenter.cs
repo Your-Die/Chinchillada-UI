@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Chinchillada.Foundation.UI
+namespace Chinchillada.UI
 {
     public class TribunePresenter<T> : FreezableTribune<T>
     {
