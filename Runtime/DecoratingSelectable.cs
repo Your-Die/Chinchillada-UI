@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Packages.Runtime
 {
-    public class DecoratingSelectable : ChinchilladaBehaviour, ISelectHandler, IDeselectHandler
+    public class DecoratingSelectable : AutoRefBehaviour, ISelectHandler, IDeselectHandler
     {
         [SerializeField] private ITextDecorator decorator;
         

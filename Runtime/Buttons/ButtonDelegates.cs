@@ -11,7 +11,7 @@ namespace Chinchillada.UI
     /// <summary>
     /// Collects all child buttons so the <see cref="Button.onClick"/> events can be edited in one place.
     /// </summary>
-    public class ButtonDelegates : ChinchilladaBehaviour
+    public class ButtonDelegates : AutoRefBehaviour
     {
         /// <summary>
         /// The list of button delegates.

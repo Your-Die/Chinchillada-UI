@@ -13,7 +13,7 @@ namespace Chinchillada.Thesis.UI
     /// Generic implementation of <see cref="IMultipleChoicePresenter{T}"/> that hides the type implementation behind
     /// a <see cref="IOption"/> interface.
     /// </summary>
-    public class PooledOptionPresenter : ChinchilladaBehaviour, IMultipleChoicePresenter<IOption>
+    public class PooledOptionPresenter : AutoRefBehaviour, IMultipleChoicePresenter<IOption>
     {
         /// <summary>
         /// The buttons used to present the <see cref="IOption"/>.

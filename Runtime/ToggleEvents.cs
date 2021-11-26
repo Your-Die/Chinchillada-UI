@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Chinchillada.UI
 {
-    public class ToggleEvents : ChinchilladaBehaviour
+    public class ToggleEvents : AutoRefBehaviour
     {
         [SerializeField, Required, FindComponent(SearchStrategy.InChildren)]
         private Toggle toggle;

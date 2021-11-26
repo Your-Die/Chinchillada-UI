@@ -2,7 +2,7 @@ namespace Chinchillada.UI
 {
     using UnityEngine;
 
-    public abstract class Window : ChinchilladaBehaviour, IWindow
+    public abstract class Window : AutoRefBehaviour, IWindow
     {
         [SerializeField] private bool hideOnAwake = true;
 

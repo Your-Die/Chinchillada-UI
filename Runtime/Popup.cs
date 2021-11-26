@@ -3,7 +3,7 @@ namespace Chinchillada.UI
     using Chinchillada;
     using UnityEngine;
 
-    public class Popup : ChinchilladaBehaviour
+    public class Popup : AutoRefBehaviour
     {
         [SerializeField] private Vector3 offset;
 

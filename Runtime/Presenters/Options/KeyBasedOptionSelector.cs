@@ -5,7 +5,7 @@
     using Chinchillada.UI;
     using UnityEngine;
 
-    public class KeyBasedOptionSelector :  ChinchilladaBehaviour
+    public class KeyBasedOptionSelector :  AutoRefBehaviour
     {
         [SerializeField] private IMultipleChoicePresenter<IOption> optionPresenter;
 

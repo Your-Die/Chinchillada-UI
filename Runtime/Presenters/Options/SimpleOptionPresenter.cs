@@ -5,7 +5,7 @@
     using System.Linq;
     using UnityEngine;
 
-    public class SimpleOptionPresenter : ChinchilladaBehaviour, IMultipleChoicePresenter<IOption>
+    public class SimpleOptionPresenter : AutoRefBehaviour, IMultipleChoicePresenter<IOption>
     {
         [SerializeField] private List<ButtonController> buttons = new List<ButtonController>();
 

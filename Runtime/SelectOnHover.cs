@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Chinchillada.UI
 {
-    public class SelectOnHover : ChinchilladaBehaviour, IPointerEnterHandler
+    public class SelectOnHover : AutoRefBehaviour, IPointerEnterHandler
     {
         [SerializeField] private GameObject target;
         

@@ -2,7 +2,7 @@
 
 namespace Chinchillada.UI
 {
-    public abstract class FreezableTribune<T> : ChinchilladaBehaviour, IPriorityExecutor<T>, IFreezableTribune
+    public abstract class FreezableTribune<T> : AutoRefBehaviour, IPriorityExecutor<T>, IFreezableTribune
     {
         [SerializeField] private int freezePriority = 2;
 

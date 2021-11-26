@@ -6,7 +6,7 @@ namespace Chinchillada.UI
     using TMPro;
     using UnityEngine;
 
-    public class TextListDisplay : ChinchilladaBehaviour, IVisualizer<IEnumerable<string>>
+    public class TextListDisplay : AutoRefBehaviour, IVisualizer<IEnumerable<string>>
     {
         [SerializeField] private UPoolingList<TMP_Text> textElements;
 

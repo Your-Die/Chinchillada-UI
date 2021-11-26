@@ -12,7 +12,7 @@ namespace Chinchillada.UI
     /// on a button object.
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public class ButtonController : ChinchilladaBehaviour
+    public class ButtonController : AutoRefBehaviour
     {
         /// <summary>
         /// The button.
