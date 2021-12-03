@@ -10,35 +10,35 @@ using UnityEngine.Events;
 namespace Chinchillada.Thesis.UI
 {
     /// <summary>
-    /// Generic implementation of <see cref="IMultipleChoicePresenter{T}"/> that hides the type implementation behind
+    /// Generic implementation of <see cref="Chinchillada.UI.ISelectionView{T}"/> that hides the type implementation behind
     /// a <see cref="IOption"/> interface.
     /// </summary>
-    public class PooledOptionPresenter : AutoRefBehaviour, IMultipleChoicePresenter<IOption>
+    public class OptionView : AutoRefBehaviour, ISelectionView<IOption>
     {
         /// <summary>
         /// The buttons used to present the <see cref="IOption"/>.
         /// </summary>
-        [SerializeField] private UPoolingList<ButtonController> buttons = new UPoolingList<ButtonController>();
-
-        private const string EventFoldoutGroup = "Events";
-        [SerializeField, FoldoutGroup(EventFoldoutGroup)] private UnityEvent presentEvent;
-        [SerializeField, FoldoutGroup(EventFoldoutGroup)] private UnityEvent hideEvent;
-        
-        private readonly Dictionary<ButtonController, IOption> optionLookup
-            = new Dictionary<ButtonController, IOption>();
-
-        private readonly Dictionary<ButtonController, ButtonListener> listenerLookup
-            = new Dictionary<ButtonController, ButtonListener>();
+        [SerializeField] private ComponentPoolList<TextButton> buttons = new ComponentPoolList<TextButton>();
 
         /// <summary>
         /// Callback invoked when an <see cref="IOption"/> has been selected.
         /// </summary>
         private Action<IOption> selectionCallback;
+        
+        private const string EventFoldoutGroup = "Events";
+        [SerializeField, FoldoutGroup(EventFoldoutGroup)] private UnityEvent presentEvent;
+        [SerializeField, FoldoutGroup(EventFoldoutGroup)] private UnityEvent hideEvent;
+        
+        private readonly Dictionary<TextButton, IOption> optionLookup
+            = new Dictionary<TextButton, IOption>();
+
+        private readonly Dictionary<TextButton, ButtonListener> listenerLookup
+            = new Dictionary<TextButton, ButtonListener>();
 
         /// <summary>
         /// Event invoked when an <see cref="IOption"/> has been selected.
         /// </summary>
-        public event Action<IOption> SelectedEvent;
+        public event Action<IOption> SelectionMade;
 
         public void SelectOption(int index)
         {
@@ -47,31 +47,17 @@ namespace Chinchillada.Thesis.UI
         }
 
         /// <inheritdoc />
-        public IEnumerable<IOption> Content { get; private set; }
-
-        /// <inheritdoc />
-        public void Present(IEnumerable<IOption> content)
+        public void Show(IList<IOption> options)
         {
-            var contentList = content.ToList();
-            this.Content = contentList;
-            this.buttons.ApplyWith(contentList, PresentOption);
+            this.buttons.ApplyWith(options, PresentOption);
 
             this.presentEvent.Invoke();
             
-            void PresentOption(IOption option, ButtonController button)
+            void PresentOption(IOption option, TextButton button)
             {
                 option.Present(button);
                 this.optionLookup[button] = option;
             }
-        }
-
-        /// <summary>
-        /// Presents the <see cref="options"/> and invokes <see cref="onOptionSelected"/> when an option is selected.
-        /// </summary>
-        public void Present(IEnumerable<IOption> options, Action<IOption> onOptionSelected)
-        {
-            this.selectionCallback = onOptionSelected;
-            this.Present(options);
         }
 
         /// <inheritdoc />
@@ -102,7 +88,7 @@ namespace Chinchillada.Thesis.UI
         /// <summary>
         /// Invoked when a new button is added to the <see cref="buttons"/>.
         /// </summary>
-        private void OnButtonActivated(ButtonController button)
+        private void OnButtonActivated(TextButton button)
         {
             // Create a new button listener.
             this.listenerLookup[button] = new ButtonListener(button, this.OnButtonClicked);
@@ -111,7 +97,7 @@ namespace Chinchillada.Thesis.UI
         /// <summary>
         /// Called when a button is deactivated out of <see cref="buttons"/>.
         /// </summary>
-        private void OnButtonDeactivated(ButtonController button)
+        private void OnButtonDeactivated(TextButton button)
         {
             // Deactivate and remove the listener.
             var listener = this.listenerLookup[button];
@@ -123,14 +109,14 @@ namespace Chinchillada.Thesis.UI
         /// Called when one of the <see cref="buttons"/> is clicked.
         /// </summary>
         /// <param name="button">The clicked button.</param>
-        private void OnButtonClicked(ButtonController button)
+        private void OnButtonClicked(TextButton button)
         {
             // Get the corresponding option.
             var option = this.optionLookup[button];
 
             // Invoke events.
             this.selectionCallback?.Invoke(option);
-            this.SelectedEvent?.Invoke(option);
+            this.SelectionMade?.Invoke(option);
         }
 
         /// <summary>
@@ -138,10 +124,10 @@ namespace Chinchillada.Thesis.UI
         /// </summary>
         private class ButtonListener
         {
-            private readonly Action<ButtonController> callback;
-            private readonly ButtonController button;
+            private readonly Action<TextButton> callback;
+            private readonly TextButton button;
 
-            public ButtonListener(ButtonController button, Action<ButtonController> callback)
+            public ButtonListener(TextButton button, Action<TextButton> callback)
             {
                 this.button = button;
                 this.callback = callback;

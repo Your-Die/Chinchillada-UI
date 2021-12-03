@@ -12,7 +12,7 @@ namespace Chinchillada.UI
     /// on a button object.
     /// </summary>
     [RequireComponent(typeof(Button))]
-    public class ButtonController : AutoRefBehaviour
+    public class TextButton : AutoRefBehaviour
     {
         /// <summary>
         /// The button.
@@ -36,7 +36,7 @@ namespace Chinchillada.UI
         /// </summary>
         public TMP_Text TextElement => this.textElement;
 
-        public event Action<ButtonController> Clicked;
+        public event Action<TextButton> Clicked;
 
         private void OnEnable() => this.button.onClick.AddListener(this.OnClicked);
         private void OnDisable() => this.button.onClick.RemoveListener(this.OnClicked);

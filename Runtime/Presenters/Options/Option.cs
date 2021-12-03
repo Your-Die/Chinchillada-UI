@@ -3,7 +3,7 @@
 namespace Chinchillada.UI
 {
     /// <summary>
-    /// Generic class for <see cref="IOption"/> being presented in a <see cref="PooledOptionPresenter"/>.
+    /// Generic class for <see cref="IOption"/> being presented in a <see cref="OptionView"/>.
     /// </summary>
     /// <typeparam name="T">The type of content being encapsulated by this option.</typeparam>
     public class Option<T> : IOption
@@ -18,19 +18,19 @@ namespace Chinchillada.UI
         /// <summary>
         /// Present this <see cref="Option{T}"/> in the <paramref name="button"/>.
         /// </summary>
-        public virtual void Present(ButtonController button)
+        public virtual void Present(TextButton button)
         {
             var text = this.Content.ToString();
             SetText(button, text);
         }
 
-        public void Present(ButtonController button, int index)
+        public void Present(TextButton button, int index)
         {
             var text = $"{index + 1}. {this.Content}";
             SetText(button, text);
         }
         
-        private static void SetText(ButtonController button, string text)
+        private static void SetText(TextButton button, string text)
         {
             button.TextElement.text = text;
         }

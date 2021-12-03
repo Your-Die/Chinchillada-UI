@@ -18,7 +18,7 @@ namespace Chinchillada.UI
         [SerializeField] private LogHandler tribuneLogHandler;
         
         [SerializeField, FindComponent, Required]
-        private IPresenter<T> presenter;
+        private IView<T> presenter;
 
         private T currentContent;
         
@@ -64,7 +64,7 @@ namespace Chinchillada.UI
         private void ShowInternal(T content)
         {
             this.currentContent = content;
-            this.presenter.Present(content);
+            this.presenter.Show(content);
             base.Summon();
         }
 

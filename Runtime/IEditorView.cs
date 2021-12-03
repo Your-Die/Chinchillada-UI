@@ -2,7 +2,7 @@
 
 namespace Chinchillada.UI
 {
-    public interface IEditorView<T> : IPresenter<T>
+    public interface IEditorView<T> : IView<T>
     {
         bool CanEdit { get; set; }
         

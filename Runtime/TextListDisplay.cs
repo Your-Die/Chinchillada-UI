@@ -8,7 +8,7 @@ namespace Chinchillada.UI
 
     public class TextListDisplay : AutoRefBehaviour, IVisualizer<IEnumerable<string>>
     {
-        [SerializeField] private UPoolingList<TMP_Text> textElements;
+        [SerializeField] private ComponentPoolList<TMP_Text> textElements;
 
         public void Visualize(IEnumerable<string> content)
         {

@@ -7,7 +7,7 @@
 
     public class KeyBasedOptionSelector :  AutoRefBehaviour
     {
-        [SerializeField] private IMultipleChoicePresenter<IOption> optionPresenter;
+        [SerializeField] private ISelectionView<IOption> optionPresenter;
 
         [SerializeField] private List<KeyCode> keys;
 

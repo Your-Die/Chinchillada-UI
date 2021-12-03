@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Chinchillada.UI
 {
-    public class TMPPresenter : AutoRefBehaviour, IPresenter<string>
+    public class TMPPresenter : AutoRefBehaviour, IView<string>
     {
         [SerializeField, FindComponent(SearchStrategy.InChildren)]
         private TMP_Text textElement;
@@ -16,7 +16,7 @@ namespace Chinchillada.UI
         private string content;
         private string rawContent;
 
-        public void Present(string newContent)
+        public void Show(string newContent)
         {
             this.rawContent = newContent;
             this.BuildText();

@@ -4,8 +4,8 @@ namespace Chinchillada.UI
 
     public class PresenterVisualizer<T> : IVisualizer<T>
     {
-        [OdinSerialize] private IPresenter<T> presenter;
+        [OdinSerialize] private IView<T> presenter;
         
-        public void Visualize(T content) => this.presenter.Present(content);
+        public void Visualize(T content) => this.presenter.Show(content);
     }
 }

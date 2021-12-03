@@ -5,16 +5,16 @@
     using System.Linq;
     using UnityEngine;
 
-    public class SimpleOptionPresenter : AutoRefBehaviour, IMultipleChoicePresenter<IOption>
+    public class SimpleOptionPresenter : AutoRefBehaviour, ISelectionView<IOption>
     {
-        [SerializeField] private List<ButtonController> buttons = new List<ButtonController>();
+        [SerializeField] private List<TextButton> buttons = new List<TextButton>();
 
         [SerializeField] private bool prependNumbers;
 
-        private readonly Dictionary<ButtonController, IOption> optionLookup =
-            new Dictionary<ButtonController, IOption>();
+        private readonly Dictionary<TextButton, IOption> optionLookup =
+            new Dictionary<TextButton, IOption>();
 
-        public event Action<IOption> SelectedEvent;
+        public event Action<IOption> SelectionMade;
 
         public void SelectOption(int index)
         {
@@ -22,7 +22,7 @@
             this.OnButtonClicked(button);
         }
 
-        public void Present(IEnumerable<IOption> content)
+        public void Show(IList<IOption> content)
         {
             var options = content.ToArray();
 
@@ -64,10 +64,10 @@
             this.Hide();
         }
 
-        private void OnButtonClicked(ButtonController button)
+        private void OnButtonClicked(TextButton button)
         {
             var option = this.optionLookup[button];
-            this.SelectedEvent?.Invoke(option);
+            this.SelectionMade?.Invoke(option);
         }
 
         private void OnEnable()

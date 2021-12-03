@@ -2,7 +2,7 @@
 {
     public interface IOption
     {
-        void Present(ButtonController button);
-        void Present(ButtonController button, int index);
+        void Present(TextButton button);
+        void Present(TextButton button, int index);
     }
 }
