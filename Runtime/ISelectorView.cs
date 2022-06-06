@@ -2,7 +2,9 @@
 
 namespace Chinchillada.Foundation.UI
 {
-    public interface ISelectorView<out T>
+    using System.Collections.Generic;
+
+    public interface ISelectorView<T> : IView<IReadOnlyList<T>>
     {
         event Action<T> Selected;
     }
