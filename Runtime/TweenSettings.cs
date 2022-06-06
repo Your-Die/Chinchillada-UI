@@ -17,4 +17,13 @@ namespace Chinchillada.UI
             tweener.SetRelative(this.isRelative);
         }
     }
+
+    public static class TweenSettingsExtensions
+    {
+        public static Tweener ApplySettings(this Tweener tweener, TweenSettings settings)
+        {
+            settings.Apply(tweener);
+            return tweener;
+        }
+    }
 }
