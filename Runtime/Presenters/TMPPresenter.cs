@@ -43,6 +43,7 @@ namespace Chinchillada.Foundation.UI
                 : this.rawContent;
 
             this.textElement.text = this.content;
+            this.textElement.ForceMeshUpdate(true);
 
             string ExecuteDecorator(string text, ITextDecorator decorator) => decorator.Decorate(text);
         }
